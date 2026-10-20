@@ -70,20 +70,36 @@ git config --global --get user.name
 git config --global --get user.email
 ```
 
-## 5. 建第一个仓库并推上 GitHub
+## 5. 当前仓库：Tangline → Mac-Minic-M4（已推送）
 
-先在 GitHub 网页端 **New repository**（建议先建成空仓库，不要勾 README），拿到地址后：
+本目录 `/Volumes/Macintosh HD2/存储/Codex/软件开发` 已初始化并推到：
+
+- 远端：`git@github.com:Elaytang/Mac-Minic-M4.git`
+- 分支：`main`，跟踪 `origin/main`
+- 首个提交：`5f514ad` chore: 初始化 Tangline 仓库（Electron + React，mihomo 控制台）
+- 纳入版本控制：56 个文件 / 约 2.8MB（源码 + 图标 + 文档）
+
+`.gitignore` 已挡掉的（实测 `git check-ignore` 逐条确认）：
+
+| 路径 | 原因 |
+|---|---|
+| `node_modules/` | 依赖，`npm ci` 可重建（460MB） |
+| `release/` | 打包产物 dmg/zip（1.5GB） |
+| `dist/` | Vite 构建产物 |
+| `assets/.chrome-icon-profile/` | 本地 Chrome 调试配置，含 Cookies / Login Data 会话库 |
+| `hello-git/` | 临时测试仓库（已移到 `Codex/_quarantine/`） |
+| `*.bak` `*.log` `.DS_Store` | 备份 / 日志 / 系统文件 |
+
+### 日常三件套
 
 ```zsh
-cd "/Volumes/Macintosh HD2/存储/Codex/软件开发"
-mkdir my-project && cd my-project
-git init -b main
-echo "# my-project" > README.md
-git add README.md
-git commit -m "chore: init"
-git remote add origin git@github.com:Elaytang/my-project.git
-git push -u origin main
+git st                      # 别名：status -sb
+git add -A
+git commit -m "feat: 说明改了什么"
+git push
 ```
+
+`push.autoSetupRemote=true` 已开，新分支第一次推不用写 `-u origin xxx`。
 
 ## 6. 已验证 / 未执行
 
@@ -97,7 +113,9 @@ git push -u origin main
 | `ssh -T git@github.com` | `Hi Elaytang! You've successfully authenticated...` | 已验证 |
 | 自有仓库读取 | `git ls-remote git@github.com:Elaytang/chatbox.git` 返回 `refs/heads/main` | 已验证 |
 | 提交归属 | 本地 commit `name=Elaytang` / `email=175331562+Elaytang@users.noreply.github.com` | 已验证 |
-| `git push` 到远端 | 需要一个已存在的目标仓库 | 未执行（见第 5 节） |
+| `git push` 到 `Elaytang/Mac-Minic-M4` | `* [new branch] main -> main`，远端 sha = 本地 5f514ad | 已验证 |
+| 远端回读克隆 | 新目录 `git clone` 成功，56 文件，无 node_modules/release | 已验证 |
+| 提交归属（GitHub 侧） | API 读到 author = Elaytang / 175331562+Elaytang@users.noreply.github.com | 已验证 |
 
 ## 7. 回滚
 

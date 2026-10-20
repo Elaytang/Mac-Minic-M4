@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- 主背景渐变：暖橙赤陶琉璃质感 -->
+    <linearGradient id="bodyGradient" x1="180" y1="90" x2="844" y2="934" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF7A3D" />
+      <stop offset="28%" stop-color="#F7652E" />
+      <stop offset="72%" stop-color="#E2481A" />
+      <stop offset="100%" stop-color="#CA3710" />
+    </linearGradient>
+
+    <!-- 顶部环境光照渐变 -->
+    <linearGradient id="topHighlight" x1="512" y1="74" x2="512" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.42" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- 边框微光描边渐变 -->
+    <linearGradient id="rimStroke" x1="512" y1="74" x2="512" y2="950" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45" />
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05" />
+    </linearGradient>
+
+    <!-- 白色主体浮雕投影 -->
+    <filter id="glyphShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#6E1B05" flood-opacity="0.36" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#882207" flood-opacity="0.28" />
+    </filter>
+
+    <!-- 图标悬浮主投影 -->
+    <filter id="dockShadow" x="-30%" y="-20%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="36" stdDeviation="40" flood-color="#1E0702" flood-opacity="0.42" />
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#360C03" flood-opacity="0.25" />
+    </filter>
+
+    <!-- 节点内孔渐变 -->
+    <linearGradient id="nodeHole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B8300D" />
+      <stop offset="100%" stop-color="#E54F20" />
+    </linearGradient>
+
+    <!-- 节点内微光 -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFA875" />
+      <stop offset="100%" stop-color="#D94719" />
+    </radialGradient>
+  </defs>
+
+  <!-- 1. 底层图标体：macOS 标准连续圆角 Squircle (876x876, r=206, 居中在 512, 512) -->
+  <g filter="url(#dockShadow)">
+    <rect x="74" y="74" width="876" height="876" rx="208" fill="url(#bodyGradient)" />
+  </g>
+
+  <!-- 2. 顶部微光曲面覆盖层 -->
+  <rect x="74" y="74" width="876" height="876" rx="208" fill="url(#topHighlight)" />
+
+  <!-- 3. 边框极细内微光 (1.5px 精细描边) -->
+  <rect x="75" y="75" width="874" height="874" rx="207" fill="none" stroke="url(#rimStroke)" stroke-width="2.5" />
+
+  <!-- 4. 核心图形：T 形网络流线拓扑 (带立体浮雕投影) -->
+  <g filter="url(#glyphShadow)">
+    <!-- 拓扑连接横梁与主竖梁 -->
+    <path d="M312 336h400M512 336v376" fill="none" stroke="#FFFFFF" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- 左、右、底三处主节点基座 (象牙白实心圆) -->
+    <circle cx="312" cy="336" r="62" fill="#FFFFFF" />
+    <circle cx="712" cy="336" r="62" fill="#FFFFFF" />
+    <circle cx="512" cy="712" r="62" fill="#FFFFFF" />
+
+    <!-- 节点内凹精密透孔 -->
+    <circle cx="312" cy="336" r="28" fill="url(#nodeHole)" />
+    <circle cx="712" cy="336" r="28" fill="url(#nodeHole)" />
+    <circle cx="512" cy="712" r="28" fill="url(#nodeHole)" />
+
+    <!-- 节点中心微脉冲光点 -->
+    <circle cx="312" cy="336" r="10" fill="url(#centerGlow)" />
+    <circle cx="712" cy="336" r="10" fill="url(#centerGlow)" />
+    <circle cx="512" cy="712" r="10" fill="url(#centerGlow)" />
+  </g>
+
+  <!-- 5. 顶部边缘极其精致的 1px 细丝边缘高光 (Top Bevel Glow) -->
+  <path d="M280 75.5 Q512 74 744 75.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="2" stroke-linecap="round" />
+</svg>

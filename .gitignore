@@ -1,0 +1,30 @@
+# 依赖与构建产物
+node_modules/
+dist/
+release/
+out/
+*.dmg
+*.zip
+*.blockmap
+*.asar
+
+# 浏览器调试配置（含 Cookies / 会话，绝不入库）
+.chrome-icon-profile/
+assets/.chrome-icon-profile/
+
+# 独立子仓库 / 临时沙箱
+hello-git/
+
+# 系统与日志
+.DS_Store
+._*
+*.log
+coverage/
+screenshots/
+
+# 临时/备份
+*.bak
+*.orig
+*.swp
+tmp/
+.build/
